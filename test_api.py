@@ -1,7 +1,7 @@
 import pytest
 # Для асинхронных фикстур нам нужен AsyncClient
 from httpx import AsyncClient
-from main import app
+from main import app, fake_db
 # Использование специализированной фикстуры для асинхронного режима
 # Это решает проблему "async_generator"
 from pytest_asyncio import fixture as async_fixture
