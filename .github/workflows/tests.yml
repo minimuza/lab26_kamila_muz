@@ -1,8 +1,8 @@
 name: Run Tests
 
+# Запускаем при пуше в master и при PR в master
 on:
   push:
-    # ИСПРАВЛЕНО: Запускать при пуше в ветку master (поскольку вы ее используете)
     branches: [ master ] 
   pull_request:
     branches: [ master ]
@@ -22,12 +22,12 @@ jobs:
         python-version: '3.10'
         
     - name: Install dependencies
-      # Устанавливаем зависимости
+      # Устанавливаем зависимости из requirements.txt и добавляем плагин для асинхронных тестов
       run: |
         python -m pip install --upgrade pip
-        # ⚠️ ДОБАВЛЯЕМ pytest-asyncio для работы с асинхронными тестами (async def)
         pip install -r requirements.txt pytest-asyncio
         
     - name: Run tests
-      # Запускаем pytest, указывая папку tests/
-      run: pytest -v tests/
+      # Запускаем pytest. Он сам найдет тесты в папке 'tests/'
+      # ⚠️ ПАЙПЛАЙН УПАДЕТ, ПОКА ВЫ НЕ ИСПРАВИТЕ ИМПОРТ 'fake_db' В ВАШИХ ФАЙЛАХ ТЕСТОВ (test_api.py)
+      run: pytest -v
