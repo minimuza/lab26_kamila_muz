@@ -25,7 +25,8 @@ jobs:
       # Устанавливаем зависимости
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        # ⚠️ ДОБАВЛЯЕМ pytest-asyncio для работы с асинхронными тестами (async def)
+        pip install -r requirements.txt pytest-asyncio
         
     - name: Run tests
       # Запускаем pytest, указывая папку tests/
